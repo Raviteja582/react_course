@@ -1,0 +1,3 @@
+Install yarn package.
+Install react app by "npx creat-react-app app_name".
+Go to app_name folder and start app by "yarn-start."
