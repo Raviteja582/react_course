@@ -1,38 +1,55 @@
-import React,{Component} from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle, CardText, CardBody } from 'reactstrap';
-class Details extends React.Component{
-    constructor(props){
-        super(props);
+import React from 'react';
+import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
+
+    /* these funtions are used to know the lifecycle of Components. */
+    /* componentDidMount(){
+        console.log('MenuComponent Component componentDidMount invoked');
     }
-    render(){
-        const d=this.props.dish;
+    componentDidUpdate(){
+        console.log('MenuComponent component componentDidUpdated invoked');
+    } */
+
+
+    /* 1st way of implemeting funtional Components using JS*/
+
+    function RenderDish({dish}){
+        return(
+            <div className="col-12 col-md-5 m-1">
+            <Card>
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardBody>
+                    <CardTitle>{dish.name}</CardTitle>
+                    <CardText>{dish.description}</CardText>
+                </CardBody>
+            </Card>
+        </div>
+        );
+    }
+    function RenderComments({comment}){
+        return(
+            <div className="col-12 col-md-5 m-1">
+                <b>Comments</b>
+                {comment.map( (com) => {
+                    return(
+                        <div>
+                            <p>{com.comment}</p>
+                            <p>--{com.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(com.date)))}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+    const Details= (props) => {
+        const d=props.dish;
         if(d!=null){
             return  (
                 <div className="container">
                     <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                    <Card>
-                       <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
-                           <CardBody>
-                           <CardTitle>{this.props.dish.name}</CardTitle>
-                           <CardText>{this.props.dish.description}</CardText>
-                               </CardBody>
-                       </Card>
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                      <b>Comments</b>
-                        {this.props.dish.comments.map( (comment) => {
-                            return(
-                                <div>
-                                    <p>{comment.comment}</p>
-                                    <p>--{comment.author} , {comment.date}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
+                    <RenderDish dish={props.dish} />
+                    <RenderComments comment={props.dish.comments} />
                     </div>
                 </div>
-                       
             );
         }
         else{
@@ -41,6 +58,5 @@ class Details extends React.Component{
             );
         }
     }
-}
 
 export default Details;
