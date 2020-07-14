@@ -40,6 +40,8 @@ import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
             </div>
         );
     }
+
+    /* 2nd of Implementing the funtion. */
     const Details= (props) => {
         const d=props.dish;
         if(d!=null){
@@ -58,5 +60,4 @@ import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
             );
         }
     }
-
 export default Details;
