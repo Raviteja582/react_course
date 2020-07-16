@@ -23,9 +23,17 @@ class Main extends Component {
 			promotions: PROMOTIONS,
 			leaders: LEADERS
 		};
-    }
+	}
 	render() {
+		/* The DishDetail Component is called because the each dish in the menu is associated with a link '/menu/id' 
+			So hence by clicking a dish it immediatly generate the link with /menu/id and pass to the router of react.*/
 
+		const DishWithId = ({match}) => {
+			return(
+				<Details dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+				  comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+			);
+		  };
 		/* 1st way declaring a component to a route */
 		const HomePage = () => {
 			return (
@@ -43,6 +51,7 @@ class Main extends Component {
 					<Route path="/home" component={HomePage} />
 					{/* 2nd way of declaring a component to a route Inline method. */}
 					<Route exact path="/menu" component={() => <Menu dish={this.state.dishes} />} />
+					<Route path='/menu/:dishId' component={DishWithId} />
 					<Route exact path="/contactus" component={Contact} />
 					<Redirect to="/home" />
 				</Switch>

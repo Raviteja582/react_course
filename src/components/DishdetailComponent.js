@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
     /* these funtions are used to know the lifecycle of Components. */
     /* componentDidMount(){
@@ -48,8 +50,18 @@ import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
             return  (
                 <div className="container">
                     <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{props.dish.name}</h3>
+                            <hr />
+                        </div>                
+                    </div>
+                    <div className="row">
                     <RenderDish dish={props.dish} />
-                    <RenderComments comment={props.dish.comments} />
+                    <RenderComments comment={props.comments} />
                     </div>
                 </div>
             );
