@@ -34,8 +34,7 @@ class CommentForm extends Component{
     }
 
     handlelogin(values){
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.username, values.Comment);
         this.toggleModal();
     }
     render(){
@@ -48,12 +47,12 @@ class CommentForm extends Component{
                     <LocalForm onSubmit={(values) => this.handlelogin(values)}>
                         <Row className="form-group">
                             <Label htmlFor="username">Rating</Label>
-                            <Control.select model=".select" name="select" id="exampleSelect" className="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <Control.select model=".rating" name="rating" id="rating" className="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </Control.select>
                         </Row>
                         <Row className="form-group">
@@ -107,7 +106,7 @@ function RenderDish({dish}){
         </div>
     );
 }
-function RenderComments({comment}){
+function RenderComments({comment, addComment, dishId}){
     return(
         <div className="col-12 col-md-5 ml-1">
             <b>Comments</b>
@@ -119,7 +118,7 @@ function RenderComments({comment}){
                     </div>
                 );
             })}
-            <CommentForm />
+            <CommentForm dishId={dishId} addComment={addComment} />
         </div>
     );
 }
@@ -146,7 +145,10 @@ class Details extends Component{
                     </div>
                     <div className="row">
                         <RenderDish dish={this.props.dish} />
-                        <RenderComments comment={this.props.comments} />
+                        <RenderComments comment={this.props.comments}
+                            addComment={this.props.addComment}
+                            dishId={this.props.dish.id}
+                        />
                     </div>
                 </div>
             );
