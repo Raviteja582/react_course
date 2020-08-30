@@ -1,3 +1,6 @@
+
+/* It is a reducer Funtion Because it take current state and action to be formed on current state as parameters. */
+
 import * as ActionTypes from './ActionTypes';
 export const Dishes = (state = {
     isLoading: true,
@@ -15,7 +18,7 @@ export const Dishes = (state = {
 
         case ActionTypes.DISHES_LOADING:
             return {
-                ...state,    // ... sprint operator
+                ...state,    // ... sprint operator used for copying the current state before modifying,
                 isLoading: true,
                 errMess: null,
                 dishes: []
