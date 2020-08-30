@@ -16,7 +16,7 @@ function RenerList({leaders}){
                 <Stagger in>
                     <Media tag="li">
                         <Media left>
-                            <Media object src={ baseUrl + leaders.image} alt={leaders.name} />
+                            <Media object src={ leaders.image} alt={leaders.name} />
                         </Media>
                         <Media body className="ml-5">
                             <Media heading>{leaders.name}</Media>

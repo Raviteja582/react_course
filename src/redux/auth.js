@@ -16,14 +16,13 @@ export const Auth = (state = {
             return {...state,
                 isLoading: true,
                 isAuthenticated: false,
-                user: action.creds
             };
         case ActionTypes.LOGIN_SUCCESS:
             return {...state,
                 isLoading: false,
                 isAuthenticated: true,
                 errMess: '',
-                token: action.token
+                user: action.user
             };
         case ActionTypes.LOGIN_FAILURE:
             return {...state,

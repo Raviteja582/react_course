@@ -8,7 +8,7 @@ function RenderMenuItem({ dish, deleteFavorite }) {
     return(
         <Media tag="li">
             <Media left middle>
-                <Media object src={baseUrl + dish.image} alt={dish.name} />
+                <Media object src={dish.image} alt={dish.name} />
             </Media>
             <Media body className="ml-5">
                 <Media heading>{dish.name}</Media>
@@ -43,7 +43,8 @@ const Favorites = (props) => {
     }
     else if (props.favorites.favorites) {
 
-        const favorites = props.favorites.favorites.dishes.map((dish) => {
+        const favorites = props.favorites.favorites.dishes.map((dishId) => {
+            let dish = props.dishes.dishes.filter((dish) => dish._id === dishId)[0];
             return (
                 <div key={dish._id} className="col-12 mt-5">
                     <RenderMenuItem dish={dish} deleteFavorite={props.deleteFavorite} />
